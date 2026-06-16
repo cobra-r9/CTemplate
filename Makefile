@@ -27,21 +27,27 @@ build: $(TARGET)
 
 $(TARGET): $(OBJS)
 	@echo "Linking executable: $@"
-	$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@echo "Compiling: $< -> $@"
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 run: $(TARGET)
-	./$(TARGET)
+	@echo ""
+	@echo "-------------------------[test]--------------------------------"
+	@echo ""
+	@./$(TARGET)
+	@echo ""
+	@echo "---------------------------------------------------------------"
+	@echo ""
 
 clean:
 	@echo "Cleaning up..."
-	rm -rf $(OBJ_DIR) $(TARGET)
+	@rm -rf $(OBJ_DIR) $(TARGET)
 
 test: run clean 
 # ==============================================================================
