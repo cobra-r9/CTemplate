@@ -11,13 +11,15 @@ CTemplate/
 ├── LICENSE     # license for the project 
 ├── readme.md   # readme for the project 
 ├── PKGBUILD    # if you were an arch user.
+├── clean.sh    # to clean the template's include and src. 
 ├── writeups/   # folder for giving explanations for files/writeups (optional)
 ├── include/    # include directory for header files. 
 │   └── math_utils.h
 ├── src/        # source directory for c source files. 
 │   ├── main.c  # main c file 
 │   └── math_utils.c
-└── obj/        # This folder will be created and deleted automatically if you run make clean
+└── build/      # This folder will be created and deleted automatically if you run make clean
+    ├── bin/    # where the main program binary lives.
     ├── main.o
     └── math_utils.o
 ```
