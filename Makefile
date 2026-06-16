@@ -57,10 +57,14 @@ DEPS     := $(OBJS:.o=.d)
 # ==============================================================================
 # .PHONY is a special built-in target used to tell make that a specific target name is not a physical file on the computer. It is fake name for a recipe of commands that we want to run. 
 # here we have all and clean : two fake targets. 
-.PHONY: all clean
+.PHONY: all build clean
 
-# Default target
-all: $(TARGET)
+
+# for building : we can do either : make build, make all, make clean for cleaning. 
+# Default target alias to build 
+all: build
+
+build: $(TARGET)
 
 # Rule to link the final executable
 # single dependency : objs should exist. 

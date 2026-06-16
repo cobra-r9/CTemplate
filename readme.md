@@ -17,7 +17,7 @@ CTemplate/
 ├── src/        # source directory for c source files. 
 │   ├── main.c  # main c file 
 │   └── math_utils.c
-└── obj/        # This folder will be created and deleted automatically
+└── obj/        # This folder will be created and deleted automatically if you run make clean
     ├── main.o
     └── math_utils.o
 ```
