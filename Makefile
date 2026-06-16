@@ -5,9 +5,12 @@ CC       := gcc
 CFLAGS   := -Wall -Wextra -Wpedantic -O2 -std=c23
 CPPFLAGS := -Iinclude -MMD -MP
 
-TARGET   := my_program
+NAME     := my_program
+
 SRC_DIR  := src
-OBJ_DIR  := obj
+OBJ_DIR  := build
+BIN_DIR  := $(OBJ_DIR)/bin
+TARGET   := $(BIN_DIR)/$(NAME)
 
 # ==============================================================================
 # 2. DYNAMIC FILE DETECTION
@@ -25,7 +28,7 @@ all: build
 
 build: $(TARGET)
 
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) | $(BIN_DIR)
 	@echo "Linking executable: $@"
 	@$(CC) $(CFLAGS) $^ -o $@
 
@@ -33,8 +36,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@echo "Compiling: $< -> $@"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+$(OBJ_DIR) $(BIN_DIR):
+	@mkdir -p $@
 
 run: $(TARGET)
 	@echo ""
@@ -47,9 +50,10 @@ run: $(TARGET)
 
 clean:
 	@echo "Cleaning up..."
-	@rm -rf $(OBJ_DIR) $(TARGET)
+	@rm -rf $(OBJ_DIR)
 
 test: run clean 
+
 # ==============================================================================
 # 4. HEADER DEPENDENCY INCLUSION
 # ==============================================================================
