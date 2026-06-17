@@ -17,5 +17,6 @@ int modulo(int a, int b);
 
 // add two 2d vectors, return 2d vector. 
 Vec2D add2_vec2d(Vec2D vec1, Vec2D vec2);
+Vec2D add_vec2d(int count, ...);
 
 #endif

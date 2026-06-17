@@ -20,6 +20,10 @@ int main(void) {
     printf("Vector v1 = %lfi + %lfj\n", v1.i, v1.j);
     printf("Vector v2 = %lfi + %lfj\n", v2.i, v2.j);
     printf("Vector v3 = v1 + v2 = %lfi + %lfj\n", v3.i, v3.j);
+
+    // create a 2d vector and use add_vec2d to add as many as vectors we need. 
+    Vec2D v4 = add_vec2d(3, v1, v2, v3);
+    printf("Vector v4 = v1 + v2 + v3 = %lfi + %lfj\n", v4.i, v4.j);
     
     
     return EXIT_SUCCESS;
