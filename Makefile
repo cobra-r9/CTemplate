@@ -1,16 +1,17 @@
 # ==============================================================================
 # 1. COMPILER & FLAGS CONFIGURATION
 # ==============================================================================
-CC       := gcc
-CFLAGS   := -Wall -Wextra -Wpedantic -O2 -std=c23
-CPPFLAGS := -Iinclude -MMD -MP
-
 NAME     := my_program
 
 SRC_DIR  := src
 OBJ_DIR  := build
+INC_DIR  := include
 BIN_DIR  := $(OBJ_DIR)/bin
 TARGET   := $(BIN_DIR)/$(NAME)
+
+CC       := gcc
+CFLAGS   := -Wall -Wextra -Wpedantic -O2 -std=c23
+CPPFLAGS := -I$(INC_DIR) -MMD -MP
 
 # ==============================================================================
 # 2. DYNAMIC FILE DETECTION
@@ -22,7 +23,7 @@ DEPS     := $(OBJS:.o=.d)
 # ==============================================================================
 # 3. BUILD RULES
 # ==============================================================================
-.PHONY: all build run clean test
+.PHONY: all build run clean test reset
 
 all: build
 
@@ -54,7 +55,13 @@ clean:
 	@echo "Cleaning up..."
 	@rm -rf $(OBJ_DIR)
 
-test: run clean 
+test: run clean
+
+reset:
+	@echo "Resetting the project..."
+	@rm -rf $(SRC_DIR)/*
+	@rm -rf $(INC_DIR)/*
+	@rm -rf $(OBJ_DIR)
 
 # ==============================================================================
 # 4. HEADER DEPENDENCY INCLUSION
