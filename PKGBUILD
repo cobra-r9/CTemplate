@@ -20,5 +20,5 @@ package() {
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
     install -Dm644 readme.md "$pkgdir/usr/share/docs/$pkgname/README.md"
     cp -r writeups "$pkgdir/usr/share/docs/$pkgname/writeups"
-    make purge
+    echo "Run 'make purge' to clean makepkg residues..."
 }
