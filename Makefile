@@ -28,11 +28,13 @@ all: build
 
 build: $(TARGET)
 
-$(TARGET): $(OBJS) | $(BIN_DIR)
+$(TARGET): $(OBJS)
+	@mkdir -p $(BIN_DIR)
 	@echo "Linking executable: $@"
 	@$(CC) $(CFLAGS) $^ -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling: $< -> $@"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
