@@ -23,7 +23,7 @@ DEPS     := $(OBJS:.o=.d)
 # ==============================================================================
 # 3. BUILD RULES
 # ==============================================================================
-.PHONY: all build run clean test reset
+.PHONY: all build run clean test reset purge
 
 all: build
 
@@ -62,6 +62,12 @@ reset:
 	@rm -rf $(SRC_DIR)/*
 	@rm -rf $(INC_DIR)/*
 	@rm -rf $(OBJ_DIR)
+
+# For arch makepkg -si helper. 
+purge: clean 
+	@echo "Cleaning makepkg residues..."
+	@rm -rf pkg 
+	@rm -f *.tar.zst 
 
 # ==============================================================================
 # 4. HEADER DEPENDENCY INCLUSION
