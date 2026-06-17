@@ -14,11 +14,17 @@ build() {
     make NAME="$pkgname"
 }
 
+clean() {
+    make clean
+    rm *tar.zst
+    rm -rf pkg
+}
+
 package() {
     cd "$startdir"
     install -Dm755 "build/bin/$pkgname" "$pkgdir/usr/bin/$pkgname"
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
     install -Dm644 readme.md "$pkgdir/usr/share/docs/$pkgname/README.md"
-    cp -r writeups "$pkgdir/usr/share/doc/$pkgname/writeups"
-    make clean
+    cp -r writeups "$pkgdir/usr/share/docs/$pkgname/writeups"
+    clean
 }
