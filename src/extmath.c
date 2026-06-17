@@ -6,6 +6,14 @@
 //---------------------------------- include header files -------------------------------
 #include "extmath.h"
 
-int mod(int a, int b) {
+//---------------------------------- function definitions go here ----------------------- 
+// Add a mathematical modulo function. 
+int modulo(int a, int b) {
     return a % b < 0 ? ((a % b) + b) % b : a % b;
 }
+
+// Function for adding 2 2d vectors. 
+Vec2D add2_vec2d(Vec2D vec1, Vec2D vec2) {
+    return (Vec2D){ .i = vec1.i + vec2.i, .j = vec1.j + vec2.j };
+}
+
